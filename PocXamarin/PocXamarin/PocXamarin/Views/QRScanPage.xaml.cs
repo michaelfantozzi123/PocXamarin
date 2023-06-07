@@ -10,7 +10,15 @@ namespace PocXamarin.ViewModels
 		public QRScanPage ()
 		{
 			InitializeComponent ();
-		}
-	}
+        }
+
+        private void scannerView_OnScanResult(ZXing.Result result)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                lblResult.Text = result.Text;
+            });
+        }
+    }
 }
 

@@ -1,10 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
+    x:Class="PocXamarin.ViewModels.QRScanPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="PocXamarin.ViewModels.QRScanPage">
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
     <ContentPage.Content>
-        
+        <StackLayout>
+            <zxing:ZXingScannerView
+                x:Name="scannerView"
+                AutomationId="scannerView"
+                HeightRequest="400"
+                IsScanning="True"
+                ScanResultCommand="{Binding ScanCommand}"
+                WidthRequest="400" />
+
+            <Label
+                x:Name="lblResult"
+                Padding="15"
+                HorizontalOptions="Center"
+                Text="{Binding LblResult}"
+                VerticalOptions="Center" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
 
