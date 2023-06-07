@@ -6,6 +6,8 @@ using Xamarin.Forms;
 using System.Text;
 using System.Threading.Tasks;
 using PocXamarin.Services;
+using Prism.Navigation.Xaml;
+using NavigationParameters = Prism.Navigation.NavigationParameters;
 
 namespace PocXamarin.ViewModels
 {
@@ -65,6 +67,12 @@ namespace PocXamarin.ViewModels
                 {
                     IsScanning = true;
                     CrossNFC.Current.StartListening();
+
+                    var navigationParameters = new NavigationParameters();
+                    navigationParameters.Add("useModalNavigation", true);
+                    await NavigationService.NavigateAsync(nameof(ScanningOverlayPage), navigationParameters);
+
+
                 }
             }
 
@@ -88,10 +96,6 @@ namespace PocXamarin.ViewModels
         private void Current_OnTagDiscovered(ITagInfo tagInfo, bool format)
         {
             //throw new NotImplementedException();
-            if (format)
-            {
-                //CrossNFC.Current.StopListening();
-            }
         }
 
         private void Current_OnMessagePublished(ITagInfo tagInfo)
@@ -132,6 +136,35 @@ namespace PocXamarin.ViewModels
 
             CrossNFC.Current.StopListening();
             IsScanning = false;
+            await NavigationService.GoBackAsync();
+        }
+    }
+
+    // Laziness personified
+    public class ScanningOverlayPage : ContentPage
+    {
+        public ScanningOverlayPage()
+        {
+            BackgroundColor = Color.FromRgba(0, 0, 0, 0.5); // semi-transparent background
+
+            var activityIndicator = new ActivityIndicator
+            {
+                IsRunning = true,
+                Color = Color.White,
+            };
+
+            var label = new Label
+            {
+                Text = "Scanning...",
+                TextColor = Color.White,
+            };
+
+            Content = new StackLayout
+            {
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center,
+                Children = { activityIndicator, label },
+            };
         }
     }
 }

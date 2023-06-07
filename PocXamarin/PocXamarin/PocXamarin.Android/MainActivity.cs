@@ -5,6 +5,8 @@ using Android.OS;
 using Plugin.NFC;
 using Prism;
 using Prism.Ioc;
+using Plugin.Fingerprint;
+using Xamarin.Forms;
 
 namespace PocXamarin.Droid
 {
@@ -16,31 +18,15 @@ namespace PocXamarin.Droid
         {
             base.OnCreate(savedInstanceState);
 
+            Xamarin.Essentials.Platform.Init(Application);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
             CrossNFC.Init(this);
-            CrossNFC.Current.SetConfiguration(new NfcConfiguration
-            {
-                Messages = new UserDefinedMessages
-                {
-                    NFCSessionInvalidated = "Session invalidée",
-                    NFCSessionInvalidatedButton = "OK",
-                    NFCWritingNotSupported = "L'écriture des TAGs NFC n'est pas supporté sur cet appareil",
-                    NFCDialogAlertMessage = "Approchez votre appareil du tag NFC",
-                    NFCErrorRead = "Erreur de lecture. Veuillez rééssayer",
-                    NFCErrorEmptyTag = "Ce tag est vide",
-                    NFCErrorReadOnlyTag = "Ce tag n'est pas accessible en écriture",
-                    NFCErrorCapacityTag = "La capacité de ce TAG est trop basse",
-                    NFCErrorMissingTag = "Aucun tag trouvé",
-                    NFCErrorMissingTagInfo = "Aucune information à écrire sur le tag",
-                    NFCErrorNotSupportedTag = "Ce tag n'est pas supporté",
-                    NFCErrorNotCompliantTag = "Ce tag n'est pas compatible NDEF",
-                    NFCErrorWrite = "Aucune information à écrire sur le tag",
-                    NFCSuccessRead = "Lecture réussie",
-                    NFCSuccessWrite = "Ecriture réussie",
-                    NFCSuccessClear = "Effaçage réussi"
-                }
-            });
-            LoadApplication(new App(new AndroidInitializer()));
+            Plugin.Fingerprint.CrossFingerprint.SetCurrentActivityResolver(() => this);
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+
+            LoadApplication(new App(new AndroidInitializer()));    
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
@@ -74,4 +60,3 @@ namespace PocXamarin.Droid
         }
     }
 }
-

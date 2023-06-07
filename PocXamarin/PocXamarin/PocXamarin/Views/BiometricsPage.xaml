@@ -2,9 +2,17 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="PocXamarin.Views.BiometricsPage">
+    x:Class="PocXamarin.Views.BiometricsPage"
+    x:Name="Biometrics">
     <ContentPage.Content>
-        
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <Image Source="{Binding Url}"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand"/>
+            <Button Text="Authenticate" 
+                    Command="{Binding AuthenticateCommand}" 
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
-
