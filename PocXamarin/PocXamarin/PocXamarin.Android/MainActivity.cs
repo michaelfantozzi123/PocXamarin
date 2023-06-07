@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
+using Plugin.Fingerprint;
 
 namespace PocXamarin.Droid
 {
@@ -14,7 +15,13 @@ namespace PocXamarin.Droid
         {
             base.OnCreate(savedInstanceState);
 
+            // Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
+
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            // Set the current activity resolver.
+            Plugin.Fingerprint.CrossFingerprint.SetCurrentActivityResolver(() => this);
+
             LoadApplication(new App(new AndroidInitializer()));
 
             Xamarin.Essentials.Platform.Init(Application);
