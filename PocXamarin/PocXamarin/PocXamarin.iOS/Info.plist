@@ -36,5 +36,7 @@
     <string>1.0</string>
     <key>CFBundleShortVersionString</key>
     <string>1</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>App needs access to location for coordinates.</string>
   </dict>
 </plist>
