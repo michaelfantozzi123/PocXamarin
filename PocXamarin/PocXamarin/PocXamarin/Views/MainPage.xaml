@@ -4,8 +4,33 @@
              x:Class="PocXamarin.Views.MainPage"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <Image Source="YourImageSourceHere" Aspect="AspectFill" />
+
+        <Label Text="Welcome to Xamarin Forms and Prism!" 
+               HorizontalOptions="CenterAndExpand" 
+               VerticalOptions="CenterAndExpand" />
+
+        <Grid RowSpacing="10" ColumnSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" Text="QRScan" Command="{Binding NavigateCommand}" CommandParameter="QRScanPage" />
+            <Button Grid.Row="0" Grid.Column="1" Text="NFCScan" Command="{Binding NavigateCommand}" CommandParameter="NFCScanPage" />
+            <Button Grid.Row="1" Grid.Column="0" Text="Pie Chart" Command="{Binding NavigateCommand}" CommandParameter="PieChartPage" />
+            <Button Grid.Row="1" Grid.Column="1" Text="Biometrics" Command="{Binding NavigateCommand}" CommandParameter="BiometricsPage" />
+            <Button Grid.Row="2" Grid.Column="0" Text="Bonus" Command="{Binding NavigateCommand}" CommandParameter="BonusPage" />
+
+        </Grid>
+
     </StackLayout>
 
 </ContentPage>

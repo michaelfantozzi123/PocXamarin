@@ -42,5 +42,13 @@ namespace PocXamarin.ViewModels
         {
 
         }
+
+        public DelegateCommand<string> NavigateCommand => new DelegateCommand<string>(Navigate);
+
+        private async void Navigate(string pageName)
+        {
+            await NavigationService.NavigateAsync(pageName);
+        }
+
     }
 }

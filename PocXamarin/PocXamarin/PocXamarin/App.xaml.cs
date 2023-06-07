@@ -27,7 +27,13 @@ namespace PocXamarin
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
+
+            containerRegistry.RegisterForNavigation<BiometricsPage, BiometricsPageViewModel>();
+            containerRegistry.RegisterForNavigation<BonusPage, BonusPageViewModel>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<NFCScanPage, NFCScanPageViewModel>();
+            containerRegistry.RegisterForNavigation<PieChartPage, PieChartPageViewModel>();
+            containerRegistry.RegisterForNavigation<QRScanPage, QRScanPageViewModel>();
         }
     }
 }
