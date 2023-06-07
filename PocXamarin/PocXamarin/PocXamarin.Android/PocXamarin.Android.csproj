@@ -106,7 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PocXamarin\PocXamarin.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
+      <Project>{87961DEB-AE2E-4411-B41F-E1F0730078C3}</Project>
       <Name>PocXamarin</Name>
     </ProjectReference>
   </ItemGroup>
